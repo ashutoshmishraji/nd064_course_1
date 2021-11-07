@@ -4,7 +4,7 @@ FROM python:2.7
 EXPOSE 3111
 
 # Install pip requirements
-COPY ./techtrends/requirements.txt .
+COPY ./project/techtrends/requirements.txt .
 RUN python -m pip install -r requirements.txt
 
 WORKDIR /app
