@@ -8,7 +8,7 @@ COPY ./techtrends/requirements.txt .
 RUN python -m pip install -r requirements.txt
 
 WORKDIR /app
-COPY ./techtrends/ /app
+COPY ./project/techtrends /app
 RUN python init_db.py
 
 CMD [ "python","app.py" ]
