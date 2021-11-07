@@ -4,11 +4,11 @@ FROM python:2.7
 EXPOSE 3111
 
 # Install pip requirements
-COPY ./project/techtrends/requirements.txt .
-RUN python -m pip install -r requirements.txt
-
+COPY ./techtrends/ /app
 WORKDIR /app
-COPY ./project/techtrends /app
+
+RUN pip install -r requirements.txt
+
 RUN python init_db.py
 
 CMD [ "python","app.py" ]

@@ -4,38 +4,39 @@ docker build -t techtrends  .
 
 ## Docker commands used to run the application
 # TODO: insert the docker run command
-docker run --rm -d  -p 3111:7111 techtrends:latest
+docker run --rm -d  -p 7111:3111 techtrends:latest
 
 ## Docker commands used to get the application logs
 # TODO: insert the docker logs command
-docker exec -it 1d5d83269e7893e567f45f10d1bd2a9a53bfaef6e501f63008278222adb1f89f bash -c "cat app.log"
+docker logs -f $(docker ps | grep techtrends | tr " " "\\n" | tail -1)
+
 ## Logs from the container running the TechTrends application
 # TODO: paste logs from the Docker container 
-INFO:werkzeug: * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
-INFO:app:Index Page retrieved!
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:36:13] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:36:13] "GET /static/css/main.css HTTP/1.1" 200 -
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:36:13] "GET /favicon.ico HTTP/1.1" 404 -
-INFO:app:Metrics request successful
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:37:10] "GET /metrics HTTP/1.1" 200 -
-INFO:app:2021-11-07 12:25:56 Article "KubeCon + CloudNativeCon 2021" retrieved!
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:38:50] "GET /2 HTTP/1.1" 200 -
-INFO:app:About Us Page retrieved!
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:38:54] "GET /about HTTP/1.1" 200 -
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:38:56] "GET /create HTTP/1.1" 200 -
-INFO:app:New Article of Title "Udacity" created!
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:39:20] "POST /create HTTP/1.1" 302 -
-INFO:app:Index Page retrieved!
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:39:20] "GET / HTTP/1.1" 200 -
-INFO:app:2021-11-07 12:25:56 Article "2020 CNCF Annual Report" retrieved!
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:39:26] "GET /1 HTTP/1.1" 200 -
-INFO:app:Article Not Found Page retrieved!
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:39:31] "GET /333 HTTP/1.1" 404 -
-INFO:app:Metrics request successful
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:39:39] "GET /metrics HTTP/1.1" 200 -
-INFO:app:Metrics request successful
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:39:43] "GET /metrics HTTP/1.1" 200 -
-INFO:app:Metrics request successful
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:39:45] "GET /metrics HTTP/1.1" 200 -
-INFO:app:healthz request successful
-INFO:werkzeug:172.17.0.1 - - [07/Nov/2021 12:39:56] "GET /healthz HTTP/1.1" 200 -
+* Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+INFO:werkzeug:07/11/2021, 17:58:04,  * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
+INFO:app:07/11/2021, 17:58:12, Index Page retrieved!
+INFO:werkzeug:07/11/2021, 17:58:12, 172.17.0.1 - - [07/Nov/2021 17:58:12] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:07/11/2021, 17:58:12, 172.17.0.1 - - [07/Nov/2021 17:58:12] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO:app:07/11/2021, 17:58:56, 2021-11-07 17:36:11 Article "2020 CNCF Annual Report" retrieved!
+INFO:werkzeug:07/11/2021, 17:58:56, 172.17.0.1 - - [07/Nov/2021 17:58:56] "GET /1 HTTP/1.1" 200 -
+INFO:app:07/11/2021, 17:59:03, Article Not Found Page retrieved!
+INFO:werkzeug:07/11/2021, 17:59:03, 172.17.0.1 - - [07/Nov/2021 17:59:03] "GET /1333 HTTP/1.1" 404 -
+INFO:app:07/11/2021, 17:59:05, About Us Page retrieved!
+INFO:werkzeug:07/11/2021, 17:59:05, 172.17.0.1 - - [07/Nov/2021 17:59:05] "GET /about HTTP/1.1" 200 -
+INFO:werkzeug:07/11/2021, 17:59:08, 172.17.0.1 - - [07/Nov/2021 17:59:08] "GET /create HTTP/1.1" 200 -
+INFO:app:07/11/2021, 17:59:28, New Article of Title "Udacity" created!
+INFO:werkzeug:07/11/2021, 17:59:28, 172.17.0.1 - - [07/Nov/2021 17:59:28] "POST /create HTTP/1.1" 302 -
+INFO:app:07/11/2021, 17:59:28, Index Page retrieved!
+INFO:werkzeug:07/11/2021, 17:59:28, 172.17.0.1 - - [07/Nov/2021 17:59:28] "GET / HTTP/1.1" 200 -
+INFO:app:07/11/2021, 17:59:37, healthz request successful
+INFO:werkzeug:07/11/2021, 17:59:37, 172.17.0.1 - - [07/Nov/2021 17:59:37] "GET /healthz HTTP/1.1" 200 -
+INFO:app:07/11/2021, 17:59:45, Metrics request successful
+INFO:werkzeug:07/11/2021, 17:59:45, 172.17.0.1 - - [07/Nov/2021 17:59:45] "GET /metrics HTTP/1.1" 200 -
+INFO:app:07/11/2021, 17:59:47, Metrics request successful
+INFO:werkzeug:07/11/2021, 17:59:47, 172.17.0.1 - - [07/Nov/2021 17:59:47] "GET /metrics HTTP/1.1" 200 -
+INFO:app:07/11/2021, 17:59:48, Metrics request successful
+INFO:werkzeug:07/11/2021, 17:59:48, 172.17.0.1 - - [07/Nov/2021 17:59:48] "GET /metrics HTTP/1.1" 200 -
