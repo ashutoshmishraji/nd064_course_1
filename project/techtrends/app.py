@@ -3,6 +3,8 @@ import sqlite3
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
 import logging
+import sys
+import sqlite3
 
 
 # Total amount of connections to the database
@@ -12,10 +14,15 @@ total_connections=0
 # This function connects to database with the name `database.db`
 def get_db_connection():
     global total_connections
-    connection = sqlite3.connect('database.db')
-    connection.row_factory = sqlite3.Row
-    total_connections+=1
-    return connection
+    try:
+        connection = sqlite3.connect('database.db')
+        connection.row_factory = sqlite3.Row
+        total_connections+=1
+        return connection
+    
+    except :
+        raise Exception("Database connection failure")
+           
 
 # Function to get a post using its ID
 def get_post(post_id):
@@ -110,6 +117,7 @@ if __name__ == "__main__":
    ## stream logs to app.log file
     stdout_handler = logging.StreamHandler(sys.stdout)
     stderr_handler = logging.StreamHandler(sys.stderr)
+    
     handlers = [stderr_handler, stdout_handler]
 
     format_output = '%(levelname)s: %(name)-2s - [%(asctime)s] - %(message)s'
