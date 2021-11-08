@@ -108,13 +108,12 @@ def create():
 if __name__ == "__main__":
    
    ## stream logs to app.log file
-   logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(levelname)s:%(name)s:%(asctime)s %(message)s',
-    datefmt='%d/%m/%Y, %H:%M:%S,',
-    handlers=[
-        logging.FileHandler("app.log"),
-        logging.StreamHandler()
-    ])
+    stdout_handler = logging.StreamHandler(sys.stdout)
+    stderr_handler = logging.StreamHandler(sys.stderr)
+    handlers = [stderr_handler, stdout_handler]
 
-   app.run(host='0.0.0.0', port='3111')
+    format_output = '%(levelname)s: %(name)-2s - [%(asctime)s] - %(message)s'
+    logging.basicConfig(level=logging.DEBUG, handlers=handlers, format=format_output)
+    app.run(host='0.0.0.0', port='3111')
+
+  
